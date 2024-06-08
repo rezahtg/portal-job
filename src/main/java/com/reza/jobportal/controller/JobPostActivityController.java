@@ -62,6 +62,7 @@ public class JobPostActivityController {
         model.addAttribute("jobPostActivity", jobPostActivity);
         JobPostActivity saved = jobPostActivityService.addNewJob(jobPostActivity);
         return "redirect:/dashboard/";
+
     }
 
     @PostMapping("dashboard/edit/{id}")
