@@ -38,7 +38,7 @@ public class RecruiterProfileController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUsername = authentication.getName();
             Users users = usersRepository.findByEmail(currentUsername).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-            Optional<RecruiterProfile> recruiterProfile = recruiterProfileService.getRectuiterById(users.getUser_id());
+            Optional<RecruiterProfile> recruiterProfile = recruiterProfileService.getRectuiterById(users.getUserId());
             if (!recruiterProfile.isEmpty()) {
                 model.addAttribute("profile", recruiterProfile.get());
             }
@@ -54,7 +54,7 @@ public class RecruiterProfileController {
             String currentUsername = authentication.getName();
             Users users = usersRepository.findByEmail(currentUsername).orElseThrow(() -> new UsernameNotFoundException("User not found"));
             recruiterProfile.setUserId(users);
-            recruiterProfile.setUserAccountId(users.getUser_id());
+            recruiterProfile.setUserAccountId(users.getUserId());
         }
         model.addAttribute("profile", recruiterProfile);
         String filename = "";
