@@ -8,4 +8,5 @@ public interface JobSeekerProfileService {
 
     public Optional<JobSeekerProfile> getOne(Integer id);
 
+    JobSeekerProfile addNew(JobSeekerProfile jobSeekerProfile);
 }

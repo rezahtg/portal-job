@@ -1,10 +1,7 @@
 package com.reza.jobportal.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -32,6 +29,7 @@ public class JobSeekerProfile {
     @Column(nullable = true, length = 64)
     private String profilePhoto;
     @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
+    @ToString.Exclude
     private List<Skills> skills;
 
     public JobSeekerProfile(Users userId) {
@@ -39,7 +37,6 @@ public class JobSeekerProfile {
     }
     @Transient
     public String getPhotosImagePath() {
-        if (profilePhoto == null || userAccountId == null) return null;
-        return "/photos/recruiter/" + userAccountId + "/" + profilePhoto;
+        return profilePhoto == null ? null : "/photos/candidate/" + userAccountId + "/" + profilePhoto;
     }
 }
